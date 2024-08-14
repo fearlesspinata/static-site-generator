@@ -8,7 +8,14 @@ class TestParent(unittest.TestCase):
                 [
                     LeafNode("i", "Italic Text"),
                     LeafNode("b", "Bold Text"),
-                    LeafNode("b", "Bold Text"),
+                    LeafNode(None, "Normal Text"),
+                    ParentNode("p",
+                               [
+                                   LeafNode("i", "Italic Text"),
+                                   LeafNode(None, "Normal Text"),
+                                   LeafNode("b", "Bold Text"),
+                               ],
+                           )
                 ],
             )
         self.assertEqual(node1.to_html(), None)

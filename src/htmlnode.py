@@ -44,10 +44,11 @@ class ParentNode(HTMLNode):
         if not self.children:
             raise ValueError("Parent node requires children")
         
-        string_builder = []
-        for node in self.children:
-            string_builder.append(node.to_html())
+        string_builder = self.children.copy()
+        if len(self.children) == 1:
+            print(self.children)
+            return self.children[0].to_html()
 
-        return f"<{self.tag}>{''.join(string_builder)}</{self.tag}>"
+        self.children = self.children[1:]
+        return string_builder.append(self.to_html())
 
-        
