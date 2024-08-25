@@ -72,7 +72,7 @@ class TestParent(unittest.TestCase):
         self.assertEqual(node1.to_html(), "<p><i>italics</i><b>bold</b>normal<li>ordered list</li><ul>unordered list</ul></p>")
 
     def test_no_children(self):
-        node1 = ParentNode("p", 'no children')
+        node1 = ParentNode("p", [])
         with self.assertRaises(ValueError):
             node1.to_html()
 
