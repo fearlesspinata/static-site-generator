@@ -10,6 +10,13 @@ def main():
                 LeafNode("b", "Bold Text"),
                 LeafNode("i", "Italic Text"),
                 LeafNode(None, "Normal Text"),
+                ParentNode("p",
+                           [
+                               LeafNode("i", "child1 of child4"),
+                               LeafNode(None, "child2 of child4"),
+                               LeafNode("b", "child3 of child4"),
+                           ],
+                       )
             ],
         )
     html_string = node1.to_html()

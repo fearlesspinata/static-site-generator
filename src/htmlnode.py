@@ -11,10 +11,13 @@ class HTMLNode:
         raise NotImplementedError
 
     def props_to_html(self):
-        prop_string = []
-        for key, value in self.props.items():
-            prop_string.append(f'{key}="{value}"')
-        return ' '.join(prop_string)
+        if self.props is None:
+            return ""
+        else:
+            prop_string = []
+            for key, value in self.props.items():
+                prop_string.append(f'{key}="{value}"')
+            return ' '.join(prop_string)
 
     def __repr__(self):
         return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props})"
@@ -42,13 +45,10 @@ class ParentNode(HTMLNode):
 
     def to_html(self):
         if not self.children:
-            raise ValueError("Parent node requires children")
-        
-        string_builder = self.children.copy()
-        if len(self.children) == 1:
-            print(self.children)
-            return self.children[0].to_html()
-
-        self.children = self.children[1:]
-        return string_builder.append(self.to_html())
-
+            raise ValueError("Invalid HTML: no children")
+        if self.tag is None:
+            raise ValueError("Invalid HTML: no tag")
+        children_html = ""
+        for child in self.children:
+            children_html += child.to_html()
+        return f"<{self.tag}{self.props_to_html()}>{children_html}</{self.tag}>"
