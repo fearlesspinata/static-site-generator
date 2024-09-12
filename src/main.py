@@ -2,6 +2,8 @@
 from textnode import TextNode
 from htmlnode import ParentNode, LeafNode
 
+text_node = TextNode("testing", "text")
+print(text_node)
 def main():
     node1 = ParentNode(
             "p",
@@ -19,9 +21,6 @@ def main():
                        )
             ],
         )
-    html_string = node1.to_html()
-    print(html_string)
-
 
 if __name__ == "__main__":
     main()
