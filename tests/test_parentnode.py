@@ -71,6 +71,19 @@ class TestParent(unittest.TestCase):
                 )
         self.assertEqual(node1.to_html(), "<p><i>italics</i><b>bold</b>normal<li>ordered list</li><ul>unordered list</ul></p>")
 
+    def test_leaf_child(self):
+        node1 = ParentNode(
+                "p",
+                [
+                    LeafNode("b", "Bold text"),
+                    LeafNode(None, "Normal text"),
+                    LeafNode("i", "italic text"),
+                    LeafNode(None, "Normal text"),
+                ]
+                )
+        self.assertEqual(node1.to_html(), "<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>")
+
+
     def test_no_children(self):
         node1 = ParentNode("p", [])
         with self.assertRaises(ValueError):
